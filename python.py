@@ -41,12 +41,16 @@ label that dataset as ‘tab1’, and a second data frame that represents the 2n
     as either a dataframe or dictionary; please call the first dataset ‘bigquery1’ and the second dataset ‘bigquery2’;"""  
     ##  Connecting to Google BigQuery using json authenfication key  
         client = bigquery.Client.from_service_account_json('.google_bigquery/angel-507-3a181e4f70d4.json')
-    ## query public dataset
-        query_job = client.query("SELECT * FROM `bigquery-public-data.chicago_crime.crime` LIMIT 100") ## query public dataset
-    ## get results
-        results = query_job.result() ## get results
-    ## putresults into dataframe
-        df = pd.DataFrame(results.to_dataframe()) ## put results into dataframe
-        df
+    ## query public datasets
+        query_job1 = client.query("SELECT * FROM `bigquery-public-data.hacker_news.stories` LIMIT 100") ## query public dataset 1
+        query_job2 = client.query("SELECT * FROM `bigquery-public-data.baseball.games_wide` LIMIT 100") ## query public dataset 2
+    ## get results from public datasets 1 & 2 
+        result1 = query_job1.result() ## get results from public dataset 1 (query_job1)
+        result2 = query_job2.result() ## get results from public dataset 2 (query_job2)
+    ## putresults from public datasets 1 & 2 into dataframe
+        bigquery1 = pd.DataFrame(result1.to_dataframe()) ## put results from Query_job1 into dataframe
+        bigquery1
+        bigquery2 = pd.DataFrame(result2.to_dataframe()) ## put results from Query_job2 into dataframe
+        bigquery2
 
 
