@@ -15,11 +15,7 @@ import xlrd ## import xlrd for excel files, tab names
 """ Section 1: Find or create 1 excel (.xls) file that contains at least two tabs. Bring in the first tab as a data frame; 
 label that dataset as ‘tab1’, and a second data frame that represents the 2nd tab of the excel file, name this 'tab2' """
  
-    
-    ##  Convert XLS into Data Frames
-        df =  pd.read_excel('data/Dataset.xls')
-        df 
-    ## Convert first two Spreadsheets into Tabs  
+    ## Convert first two Spreadsheets of XLS file into Tabs  
         tab1 = pd.read_excel('data/Dataset.xls', sheet_name='Madden 23 Ratings')
         tab1 #Print Tab 1
         tab2 = pd.read_excel('data/Dataset.xls', sheet_name='Data Science Salaries')
@@ -34,7 +30,7 @@ label that dataset as ‘tab1’, and a second data frame that represents the 2n
         apiDataset = request_data.json()
 
     ## load into dataframe
-        df = pd.read_json(apiDataset)
+        df = pd.DataFrame.from_records(apiDataset)
         df # Print json file
         
 """ Section 3 (TRY YOUR BEST): Brings in 2 open source bigquery datasets; limit your query to get the first 100 rows from each,
@@ -48,9 +44,9 @@ label that dataset as ‘tab1’, and a second data frame that represents the 2n
         result1 = query_job1.result() ## get results from public dataset 1 (query_job1)
         result2 = query_job2.result() ## get results from public dataset 2 (query_job2)
     ## putresults from public datasets 1 & 2 into dataframe
-        bigquery1 = pd.DataFrame(result1.to_dataframe()) ## put results from Query_job1 into dataframe
+        bigquery1 = pd.DataFrame(result1.to_dataframe()) ## put results from query_job1 into dataframe
         bigquery1 # Print public dataset 1
-        bigquery2 = pd.DataFrame(result2.to_dataframe()) ## put results from Query_job2 into dataframe
+        bigquery2 = pd.DataFrame(result2.to_dataframe()) ## put results from query_job2 into dataframe
         bigquery2 # Print public dataset 2
 
 
